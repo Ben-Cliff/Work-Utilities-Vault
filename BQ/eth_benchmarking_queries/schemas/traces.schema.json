@@ -1,0 +1,95 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "traces",
+  "description": "JSON schema for BigQuery table traces",
+  "type": "object",
+  "properties": {
+    "transaction_hash": {
+      "description": "Transaction hash where this trace was in",
+      "type": "string"
+    },
+    "transaction_index": {
+      "description": "Integer of the transactions index position in the block",
+      "type": "integer"
+    },
+    "from_address": {
+      "description": "Address of the sender, null when trace_type is genesis or reward",
+      "type": "string"
+    },
+    "to_address": {
+      "description": "Address of the receiver if trace_type is call, address of new contract or null if trace_type is create, beneficiary address if trace_type is suicide, miner address if trace_type is reward, shareholder address if trace_type is genesis, WithdrawDAO address if trace_type is daofork",
+      "type": "string"
+    },
+    "value": {
+      "description": "Value transferred in Wei",
+      "type": "number"
+    },
+    "input": {
+      "description": "The data sent along with the message call",
+      "type": "string"
+    },
+    "output": {
+      "description": "The output of the message call, bytecode of contract when trace_type is create",
+      "type": "string"
+    },
+    "trace_type": {
+      "description": "One of call, create, suicide, reward, genesis, daofork",
+      "type": "string"
+    },
+    "call_type": {
+      "description": "One of call, callcode, delegatecall, staticcall",
+      "type": "string"
+    },
+    "reward_type": {
+      "description": "One of block, uncle",
+      "type": "string"
+    },
+    "gas": {
+      "description": "Gas provided with the message call",
+      "type": "integer"
+    },
+    "gas_used": {
+      "description": "Gas used by the message call",
+      "type": "integer"
+    },
+    "subtraces": {
+      "description": "Number of subtraces",
+      "type": "integer"
+    },
+    "trace_address": {
+      "description": "Comma separated list of trace address in call tree",
+      "type": "string"
+    },
+    "error": {
+      "description": "Error if message call failed. This field doesn't contain top-level trace errors.",
+      "type": "string"
+    },
+    "status": {
+      "description": "Either 1 (success) or 0 (failure, due to any operation that can cause the call itself or any top-level call to revert)",
+      "type": "integer"
+    },
+    "block_timestamp": {
+      "description": "Timestamp of the block where this trace was in",
+      "type": "string",
+      "format": "date-time"
+    },
+    "block_number": {
+      "description": "Block number where this trace was in",
+      "type": "integer"
+    },
+    "block_hash": {
+      "description": "Hash of the block where this trace was in",
+      "type": "string"
+    },
+    "trace_id": {
+      "description": "Unique string that identifies the trace. For transaction-scoped traces it is {trace_type}_{transaction_hash}_{trace_address}. For block-scoped traces it is {trace_type}_{block_number}_{index_within_block}",
+      "type": "string"
+    }
+  },
+  "required": [
+    "trace_type",
+    "block_timestamp",
+    "block_number",
+    "block_hash"
+  ]
+}

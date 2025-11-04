@@ -1,0 +1,86 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "transactions",
+  "description": "JSON schema for BigQuery table transactions",
+  "type": "object",
+  "properties": {
+    "hash": {
+      "description": "Hash of the transaction",
+      "type": "string"
+    },
+    "nonce": {
+      "description": "The number of transactions made by the sender prior to this one",
+      "type": "integer"
+    },
+    "transaction_index": {
+      "description": "Integer of the transactions index position in the block",
+      "type": "integer"
+    },
+    "from_address": {
+      "description": "Address of the sender",
+      "type": "string"
+    },
+    "to_address": {
+      "description": "Address of the receiver. null when its a contract creation transaction",
+      "type": "string"
+    },
+    "value": {
+      "description": "Value transferred in Wei",
+      "type": "number"
+    },
+    "gas": {
+      "description": "Gas provided by the sender",
+      "type": "integer"
+    },
+    "gas_price": {
+      "description": "Gas price provided by the sender in Wei",
+      "type": "integer"
+    },
+    "input": {
+      "description": "The data sent along with the transaction",
+      "type": "string"
+    },
+    "receipt_cumulative_gas_used": {
+      "description": "The total amount of gas used when this transaction was executed in the block",
+      "type": "integer"
+    },
+    "receipt_gas_used": {
+      "description": "The amount of gas used by this specific transaction alone",
+      "type": "integer"
+    },
+    "receipt_contract_address": {
+      "description": "The contract address created, if the transaction was a contract creation, otherwise null",
+      "type": "string"
+    },
+    "receipt_root": {
+      "description": "32 bytes of post-transaction stateroot (pre Byzantium)",
+      "type": "string"
+    },
+    "receipt_status": {
+      "description": "Either 1 (success) or 0 (failure) (post Byzantium)",
+      "type": "integer"
+    },
+    "block_timestamp": {
+      "description": "Timestamp of the block where this transaction was in",
+      "type": "string",
+      "format": "date-time"
+    },
+    "block_number": {
+      "description": "Block number where this transaction was in",
+      "type": "integer"
+    },
+    "block_hash": {
+      "description": "Hash of the block where this transaction was in",
+      "type": "string"
+    }
+  },
+  "required": [
+    "hash",
+    "nonce",
+    "transaction_index",
+    "from_address",
+    "block_timestamp",
+    "block_number",
+    "block_hash"
+  ]
+}

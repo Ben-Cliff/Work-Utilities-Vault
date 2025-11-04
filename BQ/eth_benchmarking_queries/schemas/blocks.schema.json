@@ -1,0 +1,87 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "blocks",
+  "description": "JSON schema for BigQuery table blocks",
+  "type": "object",
+  "properties": {
+    "timestamp": {
+      "description": "The timestamp for when the block was collated",
+      "type": "string",
+      "format": "date-time"
+    },
+    "number": {
+      "description": "The block number",
+      "type": "integer"
+    },
+    "hash": {
+      "description": "Hash of the block",
+      "type": "string"
+    },
+    "parent_hash": {
+      "description": "Hash of the parent block",
+      "type": "string"
+    },
+    "nonce": {
+      "description": "Hash of the generated proof-of-work",
+      "type": "string"
+    },
+    "sha3_uncles": {
+      "description": "SHA3 of the uncles data in the block",
+      "type": "string"
+    },
+    "logs_bloom": {
+      "description": "The bloom filter for the logs of the block",
+      "type": "string"
+    },
+    "transactions_root": {
+      "description": "The root of the transaction trie of the block",
+      "type": "string"
+    },
+    "state_root": {
+      "description": "The root of the final state trie of the block",
+      "type": "string"
+    },
+    "receipts_root": {
+      "description": "The root of the receipts trie of the block",
+      "type": "string"
+    },
+    "miner": {
+      "description": "The address of the beneficiary to whom the mining rewards were given",
+      "type": "string"
+    },
+    "difficulty": {
+      "description": "Integer of the difficulty for this block",
+      "type": "number"
+    },
+    "total_difficulty": {
+      "description": "Integer of the total difficulty of the chain until this block",
+      "type": "number"
+    },
+    "size": {
+      "description": "The size of this block in bytes",
+      "type": "integer"
+    },
+    "extra_data": {
+      "description": "The extra data field of this block",
+      "type": "string"
+    },
+    "gas_limit": {
+      "description": "The maximum gas allowed in this block",
+      "type": "integer"
+    },
+    "gas_used": {
+      "description": "The total used gas by all transactions in this block",
+      "type": "integer"
+    },
+    "transaction_count": {
+      "description": "The number of transactions in the block",
+      "type": "integer"
+    }
+  },
+  "required": [
+    "timestamp",
+    "number",
+    "hash",
+    "nonce"
+  ]
+}

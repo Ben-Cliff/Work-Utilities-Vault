@@ -1,0 +1,53 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "token_transfers",
+  "description": "JSON schema for BigQuery table token_transfers",
+  "type": "object",
+  "properties": {
+    "token_address": {
+      "description": "ERC20 token address",
+      "type": "string"
+    },
+    "from_address": {
+      "description": "Address of the sender",
+      "type": "string"
+    },
+    "to_address": {
+      "description": "Address of the receiver",
+      "type": "string"
+    },
+    "value": {
+      "description": "Amount of tokens transferred (ERC20) / id of the token transferred (ERC721). Use safe_cast for casting to NUMERIC or FLOAT64",
+      "type": "string"
+    },
+    "transaction_hash": {
+      "description": "Transaction hash",
+      "type": "string"
+    },
+    "log_index": {
+      "description": "Log index in the transaction receipt",
+      "type": "integer"
+    },
+    "block_timestamp": {
+      "description": "Timestamp of the block where this transfer was in",
+      "type": "string",
+      "format": "date-time"
+    },
+    "block_number": {
+      "description": "Block number where this transfer was in",
+      "type": "integer"
+    },
+    "block_hash": {
+      "description": "Hash of the block where this transfer was in",
+      "type": "string"
+    }
+  },
+  "required": [
+    "token_address",
+    "transaction_hash",
+    "log_index",
+    "block_timestamp",
+    "block_number",
+    "block_hash"
+  ]
+}

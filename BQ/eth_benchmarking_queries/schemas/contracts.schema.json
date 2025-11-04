@@ -1,0 +1,50 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "contracts",
+  "description": "JSON schema for BigQuery table contracts",
+  "type": "object",
+  "properties": {
+    "address": {
+      "description": "Address of the contract",
+      "type": "string"
+    },
+    "bytecode": {
+      "description": "Bytecode of the contract",
+      "type": "string"
+    },
+    "function_sighashes": {
+      "description": "4-byte function signature hashes",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "is_erc20": {
+      "description": "Whether this contract is an ERC20 contract",
+      "type": "boolean"
+    },
+    "is_erc721": {
+      "description": "Whether this contract is an ERC721 contract",
+      "type": "boolean"
+    },
+    "block_timestamp": {
+      "description": "Timestamp of the block where this contract was created",
+      "type": "string",
+      "format": "date-time"
+    },
+    "block_number": {
+      "description": "Block number where this contract was created",
+      "type": "integer"
+    },
+    "block_hash": {
+      "description": "Hash of the block where this contract was created",
+      "type": "string"
+    }
+  },
+  "required": [
+    "address",
+    "block_timestamp",
+    "block_number",
+    "block_hash"
+  ]
+}
