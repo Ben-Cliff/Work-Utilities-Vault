@@ -1,0 +1,504 @@
+benni_im_☁️ ~/Projects/repos  bq show --schema --format=prettyjson bigquery-public-data:crypto_e
+thereum_classic.traces
+[
+  {
+    "description": "Transaction hash where this trace was in",
+    "mode": "NULLABLE",
+    "name": "transaction_hash",
+    "type": "STRING"
+  },
+  {
+    "description": "Integer of the transactions index position in the block",
+    "mode": "NULLABLE",
+    "name": "transaction_index",
+    "type": "INTEGER"
+  },
+  {
+    "description": "Address of the sender, null when trace_type is genesis or reward",
+    "mode": "NULLABLE",
+    "name": "from_address",
+    "type": "STRING"
+  },
+  {
+    "description": "Address of the receiver if trace_type is call, address of new contract or null if trace_type is create, beneficiary address if trace_type is suicide, miner address if trace_type is reward, shareholder address if trace_type is genesis, WithdrawDAO address if trace_type is daofork",
+    "mode": "NULLABLE",
+    "name": "to_address",
+    "type": "STRING"
+  },
+  {
+    "description": "Value transferred in Wei",
+    "mode": "NULLABLE",
+    "name": "value",
+    "type": "NUMERIC"
+  },
+  {
+    "description": "The data sent along with the message call",
+    "mode": "NULLABLE",
+    "name": "input",
+    "type": "STRING"
+  },
+  {
+    "description": "The output of the message call, bytecode of contract when trace_type is create",
+    "mode": "NULLABLE",
+    "name": "output",
+    "type": "STRING"
+  },
+  {
+    "description": "One of call, create, suicide, reward, genesis, daofork",
+    "mode": "REQUIRED",
+    "name": "trace_type",
+    "type": "STRING"
+  },
+  {
+    "description": "One of call, callcode, delegatecall, staticcall",
+    "mode": "NULLABLE",
+    "name": "call_type",
+    "type": "STRING"
+  },
+  {
+    "description": "One of block, uncle",
+    "mode": "NULLABLE",
+    "name": "reward_type",
+    "type": "STRING"
+  },
+  {
+    "description": "Gas provided with the message call",
+    "mode": "NULLABLE",
+    "name": "gas",
+    "type": "INTEGER"
+  },
+  {
+    "description": "Gas used by the message call",
+    "mode": "NULLABLE",
+    "name": "gas_used",
+    "type": "INTEGER"
+  },
+  {
+    "description": "Number of subtraces",
+    "mode": "NULLABLE",
+    "name": "subtraces",
+    "type": "INTEGER"
+  },
+  {
+    "description": "Comma separated list of trace address in call tree",
+    "mode": "NULLABLE",
+    "name": "trace_address",
+    "type": "STRING"
+  },
+  {
+    "description": "Error if message call failed. This field doesn't contain top-level trace errors.",
+    "mode": "NULLABLE",
+    "name": "error",
+    "type": "STRING"
+  },
+  {
+    "description": "Either 1 (success) or 0 (failure, due to any operation that can cause the call itself or any top-level call to revert)",
+    "mode": "NULLABLE",
+    "name": "status",
+    "type": "INTEGER"
+  },
+  {
+    "description": "Timestamp of the block where this trace was in",
+    "mode": "REQUIRED",
+    "name": "block_timestamp",
+    "type": "TIMESTAMP"
+  },
+  {
+    "description": "Block number where this trace was in",
+    "mode": "REQUIRED",
+    "name": "block_number",
+    "type": "INTEGER"
+  },
+  {
+    "description": "Hash of the block where this trace was in",
+    "mode": "REQUIRED",
+    "name": "block_hash",
+    "type": "STRING"
+  },
+  {
+    "description": "Unique string that identifies the trace. For transaction-scoped traces it is {trace_type}_{transaction_hash}_{trace_address}. For block-scoped traces it is {trace_type}_{block_number}_{index_within_block}",
+    "name": "trace_id",
+    "type": "STRING"
+  }
+]
+ benni_im_☁️ ~/Projects/repos  bq show --schema --format=prettyjson bigquery-public-data:crypto_ethereum_classic.transactions
+[
+  {
+    "description": "Hash of the transaction",
+    "mode": "REQUIRED",
+    "name": "hash",
+    "type": "STRING"
+  },
+  {
+    "description": "The number of transactions made by the sender prior to this one",
+    "mode": "REQUIRED",
+    "name": "nonce",
+    "type": "INTEGER"
+  },
+  {
+    "description": "Integer of the transactions index position in the block",
+    "mode": "REQUIRED",
+    "name": "transaction_index",
+    "type": "INTEGER"
+  },
+  {
+    "description": "Address of the sender",
+    "mode": "REQUIRED",
+    "name": "from_address",
+    "type": "STRING"
+  },
+  {
+    "description": "Address of the receiver. null when its a contract creation transaction",
+    "mode": "NULLABLE",
+    "name": "to_address",
+    "type": "STRING"
+  },
+  {
+    "description": "Value transferred in Wei",
+    "mode": "NULLABLE",
+    "name": "value",
+    "type": "NUMERIC"
+  },
+  {
+    "description": "Gas provided by the sender",
+    "mode": "NULLABLE",
+    "name": "gas",
+    "type": "INTEGER"
+  },
+  {
+    "description": "Gas price provided by the sender in Wei",
+    "mode": "NULLABLE",
+    "name": "gas_price",
+    "type": "INTEGER"
+  },
+  {
+    "description": "The data sent along with the transaction",
+    "mode": "NULLABLE",
+    "name": "input",
+    "type": "STRING"
+  },
+  {
+    "description": "The total amount of gas used when this transaction was executed in the block",
+    "mode": "NULLABLE",
+    "name": "receipt_cumulative_gas_used",
+    "type": "INTEGER"
+  },
+  {
+    "description": "The amount of gas used by this specific transaction alone",
+    "mode": "NULLABLE",
+    "name": "receipt_gas_used",
+    "type": "INTEGER"
+  },
+  {
+    "description": "The contract address created, if the transaction was a contract creation, otherwise null",
+    "mode": "NULLABLE",
+    "name": "receipt_contract_address",
+    "type": "STRING"
+  },
+  {
+    "description": "32 bytes of post-transaction stateroot (pre Byzantium)",
+    "mode": "NULLABLE",
+    "name": "receipt_root",
+    "type": "STRING"
+  },
+  {
+    "description": "Either 1 (success) or 0 (failure) (post Byzantium)",
+    "mode": "NULLABLE",
+    "name": "receipt_status",
+    "type": "INTEGER"
+  },
+  {
+    "description": "Timestamp of the block where this transaction was in",
+    "mode": "REQUIRED",
+    "name": "block_timestamp",
+    "type": "TIMESTAMP"
+  },
+  {
+    "description": "Block number where this transaction was in",
+    "mode": "REQUIRED",
+    "name": "block_number",
+    "type": "INTEGER"
+  },
+  {
+    "description": "Hash of the block where this transaction was in",
+    "mode": "REQUIRED",
+    "name": "block_hash",
+    "type": "STRING"
+  }
+]
+ benni_im_☁️ ~/Projects/repos  bq show --schema --format=prettyjson bigquery-public-data:crypto_ethereum_classic.blocks     
+[
+  {
+    "description": "The timestamp for when the block was collated",
+    "mode": "REQUIRED",
+    "name": "timestamp",
+    "type": "TIMESTAMP"
+  },
+  {
+    "description": "The block number",
+    "mode": "REQUIRED",
+    "name": "number",
+    "type": "INTEGER"
+  },
+  {
+    "description": "Hash of the block",
+    "mode": "REQUIRED",
+    "name": "hash",
+    "type": "STRING"
+  },
+  {
+    "description": "Hash of the parent block",
+    "mode": "NULLABLE",
+    "name": "parent_hash",
+    "type": "STRING"
+  },
+  {
+    "description": "Hash of the generated proof-of-work",
+    "mode": "REQUIRED",
+    "name": "nonce",
+    "type": "STRING"
+  },
+  {
+    "description": "SHA3 of the uncles data in the block",
+    "mode": "NULLABLE",
+    "name": "sha3_uncles",
+    "type": "STRING"
+  },
+  {
+    "description": "The bloom filter for the logs of the block",
+    "mode": "NULLABLE",
+    "name": "logs_bloom",
+    "type": "STRING"
+  },
+  {
+    "description": "The root of the transaction trie of the block",
+    "mode": "NULLABLE",
+    "name": "transactions_root",
+    "type": "STRING"
+  },
+  {
+    "description": "The root of the final state trie of the block",
+    "mode": "NULLABLE",
+    "name": "state_root",
+    "type": "STRING"
+  },
+  {
+    "description": "The root of the receipts trie of the block",
+    "mode": "NULLABLE",
+    "name": "receipts_root",
+    "type": "STRING"
+  },
+  {
+    "description": "The address of the beneficiary to whom the mining rewards were given",
+    "mode": "NULLABLE",
+    "name": "miner",
+    "type": "STRING"
+  },
+  {
+    "description": "Integer of the difficulty for this block",
+    "mode": "NULLABLE",
+    "name": "difficulty",
+    "type": "NUMERIC"
+  },
+  {
+    "description": "Integer of the total difficulty of the chain until this block",
+    "mode": "NULLABLE",
+    "name": "total_difficulty",
+    "type": "NUMERIC"
+  },
+  {
+    "description": "The size of this block in bytes",
+    "mode": "NULLABLE",
+    "name": "size",
+    "type": "INTEGER"
+  },
+  {
+    "description": "The extra data field of this block",
+    "mode": "NULLABLE",
+    "name": "extra_data",
+    "type": "STRING"
+  },
+  {
+    "description": "The maximum gas allowed in this block",
+    "mode": "NULLABLE",
+    "name": "gas_limit",
+    "type": "INTEGER"
+  },
+  {
+    "description": "The total used gas by all transactions in this block",
+    "mode": "NULLABLE",
+    "name": "gas_used",
+    "type": "INTEGER"
+  },
+  {
+    "description": "The number of transactions in the block",
+    "mode": "NULLABLE",
+    "name": "transaction_count",
+    "type": "INTEGER"
+  }
+]
+ benni_im_☁️ ~/Projects/repos  bq show --schema --format=prettyjson bigquery-public-data:crypto_ethereum_classic.logs 
+[
+  {
+    "description": "Integer of the log index position in the block",
+    "mode": "REQUIRED",
+    "name": "log_index",
+    "type": "INTEGER"
+  },
+  {
+    "description": "Hash of the transactions this log was created from",
+    "mode": "REQUIRED",
+    "name": "transaction_hash",
+    "type": "STRING"
+  },
+  {
+    "description": "Integer of the transactions index position log was created from",
+    "mode": "REQUIRED",
+    "name": "transaction_index",
+    "type": "INTEGER"
+  },
+  {
+    "description": "Address from which this log originated",
+    "mode": "NULLABLE",
+    "name": "address",
+    "type": "STRING"
+  },
+  {
+    "description": "Contains one or more 32 Bytes non-indexed arguments of the log",
+    "mode": "NULLABLE",
+    "name": "data",
+    "type": "STRING"
+  },
+  {
+    "description": "Indexed log arguments (0 to 4 32-byte hex strings). (In solidity: The first topic is the hash of the signature of the event (e.g. Deposit(address,bytes32,uint256)), except you declared the event with the anonymous specifier.)",
+    "mode": "REPEATED",
+    "name": "topics",
+    "type": "STRING"
+  },
+  {
+    "description": "Timestamp of the block where this log was in",
+    "mode": "REQUIRED",
+    "name": "block_timestamp",
+    "type": "TIMESTAMP"
+  },
+  {
+    "description": "The block number where this log was in",
+    "mode": "REQUIRED",
+    "name": "block_number",
+    "type": "INTEGER"
+  },
+  {
+    "description": "Hash of the block where this log was in",
+    "mode": "REQUIRED",
+    "name": "block_hash",
+    "type": "STRING"
+  }
+]
+ benni_im_☁️ ~/Projects/repos  bq show --schema --format=prettyjson bigquery-public-data:crypto_ethereum_classic.contracts
+[
+  {
+    "description": "Address of the contract",
+    "mode": "REQUIRED",
+    "name": "address",
+    "type": "STRING"
+  },
+  {
+    "description": "Bytecode of the contract",
+    "mode": "NULLABLE",
+    "name": "bytecode",
+    "type": "STRING"
+  },
+  {
+    "description": "4-byte function signature hashes",
+    "mode": "REPEATED",
+    "name": "function_sighashes",
+    "type": "STRING"
+  },
+  {
+    "description": "Whether this contract is an ERC20 contract",
+    "mode": "NULLABLE",
+    "name": "is_erc20",
+    "type": "BOOLEAN"
+  },
+  {
+    "description": "Whether this contract is an ERC721 contract",
+    "mode": "NULLABLE",
+    "name": "is_erc721",
+    "type": "BOOLEAN"
+  },
+  {
+    "description": "Timestamp of the block where this contract was created",
+    "mode": "REQUIRED",
+    "name": "block_timestamp",
+    "type": "TIMESTAMP"
+  },
+  {
+    "description": "Block number where this contract was created",
+    "mode": "REQUIRED",
+    "name": "block_number",
+    "type": "INTEGER"
+  },
+  {
+    "description": "Hash of the block where this contract was created",
+    "mode": "REQUIRED",
+    "name": "block_hash",
+    "type": "STRING"
+  }
+]
+ benni_im_☁️ ~/Projects/repos  bq show --schema --format=prettyjson bigquery-public-data:crypto_ethereum_classic.token_transfers
+[
+  {
+    "description": "ERC20 token address",
+    "mode": "REQUIRED",
+    "name": "token_address",
+    "type": "STRING"
+  },
+  {
+    "description": "Address of the sender",
+    "mode": "NULLABLE",
+    "name": "from_address",
+    "type": "STRING"
+  },
+  {
+    "description": "Address of the receiver",
+    "mode": "NULLABLE",
+    "name": "to_address",
+    "type": "STRING"
+  },
+  {
+    "description": "Amount of tokens transferred (ERC20) / id of the token transferred (ERC721). Use safe_cast for casting to NUMERIC or FLOAT64",
+    "mode": "NULLABLE",
+    "name": "value",
+    "type": "STRING"
+  },
+  {
+    "description": "Transaction hash",
+    "mode": "REQUIRED",
+    "name": "transaction_hash",
+    "type": "STRING"
+  },
+  {
+    "description": "Log index in the transaction receipt",
+    "mode": "REQUIRED",
+    "name": "log_index",
+    "type": "INTEGER"
+  },
+  {
+    "description": "Timestamp of the block where this transfer was in",
+    "mode": "REQUIRED",
+    "name": "block_timestamp",
+    "type": "TIMESTAMP"
+  },
+  {
+    "description": "Block number where this transfer was in",
+    "mode": "REQUIRED",
+    "name": "block_number",
+    "type": "INTEGER"
+  },
+  {
+    "description": "Hash of the block where this transfer was in",
+    "mode": "REQUIRED",
+    "name": "block_hash",
+    "type": "STRING"
+  }
+]
