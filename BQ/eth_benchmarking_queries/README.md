@@ -30,3 +30,32 @@ The following queries are used for benchmarking:
 ## Benchmarking
 
 The primary purpose of these queries is to benchmark the performance of Google BigQuery when executing complex analytical queries against a large, public blockchain dataset. The execution details (duration, bytes processed, etc.) for each query are included in the query files themselves.
+
+## Query Evaluations
+
+This section provides a summary of the performance analysis of the unoptimized and optimized queries. The full analysis, including the queries and their performance metrics, can be found in the `*_eval.sql` files.
+
+### `daily_avg_value_and_fees`
+
+*   **Unoptimized:** Uses a correlated subquery, forcing a double full scan of the transactions table.
+*   **Optimized:** Uses a CTE to determine the max date first, allowing BigQuery to push the filter down and scan only the necessary data.
+
+### `erc20_high_activity_event_analysis`
+
+*   **Unoptimized:** Uses repeated logic and late filtering, leading to re-scanning and re-computation of intermediate results.
+*   **Optimized:** Employs a multi-stage CTE pattern to filter the massive tables early and break down the complex logic.
+
+### `peak_security_block_details`
+
+*   **Unoptimized:** Uses a subquery in the `WHERE` clause, forcing two separate, expensive full table scans.
+*   **Optimized:** Uses the `ROW_NUMBER()` window function to perform aggregation and selection in a single pass.
+
+### `top_internal_value_recipients`
+
+*   **Unoptimized:** Uses a global `ORDER BY ... DESC LIMIT 10`, forcing a resource-intensive global sort.
+*   **Optimized:** Uses the `QUALIFY` clause with a window function to perform the Top-N filtering more efficiently in parallel.
+
+### `top_sender_net_flow_analysis`
+
+*   **Unoptimized:** Performs redundant scans and aggregation steps on the transactions table.
+*   **Optimized:** Performs a single scan of the transactions table to calculate multiple metrics and uses a window function for ranking.
