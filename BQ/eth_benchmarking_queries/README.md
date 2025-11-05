@@ -31,9 +31,14 @@ The following queries are used for benchmarking:
 
 The primary purpose of these queries is to benchmark the performance of Google BigQuery when executing complex analytical queries against a large, public blockchain dataset. The execution details (duration, bytes processed, etc.) for each query are included in the query files themselves.
 
-## Query Evaluations
+## Query Evaluations and Optimizations
 
-This section provides a summary of the performance analysis of the unoptimized and optimized queries. The full analysis, including the queries and their performance metrics, can be found in the `*_eval.sql` files.
+The `evaluation` directory contains evaluation queries and a summary of optimization techniques.
+
+*   **`evaluation/*_eval.sql`**: These files contain pairs of unoptimized and optimized queries for benchmarking purposes.
+*   **`evaluation/optimisation.md`**: This file provides a summary of BigQuery optimization techniques with examples using the Ethereum dataset.
+
+The "Query Evaluations" section below provides a high-level summary of the performance analysis of the unoptimized and optimized queries.
 
 ### `daily_avg_value_and_fees`
 
