@@ -1,0 +1,11 @@
+Query_Name	Job_ID	Duration_ms	Bytes_Processed	Slot_Milliseconds
+Daily Avg Unoptimized	bqjob_r22f9d571074642fc_0000019a5deb0c96_1	1790	0	null
+Daily Avg Optimized	bqjob_r343b58ba97938b6a_0000019a5deb2ef0_1	1509	0	null
+ERC20 Unoptimized	bqjob_r5cd2f3de8b4b895c_0000019a5deb5037_1	1080	0	null
+ERC20 Optimized	bqjob_r47485fcb244f2009_0000019a5deb6faa_1	1789	0	null
+Peak Security Unoptimized	bqjob_r1150a926ca1bc8c4_0000019a5deb92c1_1	1665	0	null
+Peak Security Optimized	bqjob_r7cde534383a42c02_0000019a5debb334_1	956	0	null
+Top Internal Unoptimized	bqjob_r972efcb736dc83_0000019a5debd135_1	159	0	null
+Top Internal Optimized	bqjob_r4e6047445e4fe9e6_0000019a5debedf0_1	168	0	null
+Top Sender Unoptimized	bqjob_r43d4326465b6a26c_0000019a5dec0c74_1	218	0	null
+Top Sender Optimized	bqjob_r28ec2e6703986748_0000019a5dec2975_1	196	0	null
