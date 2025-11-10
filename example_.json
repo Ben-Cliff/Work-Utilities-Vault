@@ -1,0 +1,22 @@
+[
+   {
+       "prompt": "Can you optimize the following job id: bq-test-475314:US.bquxjob_6db94376_19a3467bb9a",
+       "reference": "By replacing SELECT * with an explicit list of only the columns needed (state, number), BigQuery only reads the data from those specific columns, drastically reducing the query cost and runtime."
+   },
+    {
+       "prompt": "Can you optimize the following job id: bq-test-475314:US.bquxjob_488a2f88_19a54ad5cbe",
+       "reference": " A common but highly inefficient pattern is to join a massive table and then use a CASE statement inside an aggregate function (like SUM) to compute a value for a specific subset of data. This forces BigQuery to process the entire massive join, evaluating the condition for every single row, which is incredibly wasteful.Pre-filter and pre-aggregate the subset of data in a CTE first. This creates a very small, intermediate table. You can then LEFT JOIN this small table to get the result, which is orders of magnitude more efficient than processing the entire large table.Here is the optimized query"
+   },
+   {
+       "prompt": "Can you optimize the following job id: bq-test-475314:US.bquxjob_7ea01865_19a54bfc7ec",
+       "reference": "Running an ORDER BY on a massive table without a LIMIT clause is extremely resource-intensive. Always pair ORDER BY with a LIMIT when working with large datasets. This allows BigQuery to perform a much more efficient, distributed top-N sort, where only the top results from each worker need to be gathered and sorted."
+   },
+   {
+       "prompt": "Can you optimize the following job id: bq-test-475314:US.bquxjob_43ada969_19a54c1ff04",
+       "reference": "The correct pattern is to aggregate before you join. First, calculate the daily totals for each fact table in separate CTEs. Then, join the much smaller, pre-aggregated results. This ensures the final join is a simple and efficient one-to-one lookup."
+   },
+   {
+       "prompt": "Can you optimize the following job id: bq-test-475314:US.bquxjob_4a759727_19a54c8168d",
+       "reference": " For use cases where a highly accurate estimate is sufficient (like dashboards or general analysis), use APPROX_COUNT_DISTINCT. This function uses the efficient HyperLogLog++ algorithm to provide an estimate with a very small margin of error, but with much lower computational cost."
+   }
+]

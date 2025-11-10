@@ -1,0 +1,22 @@
+[
+   {
+       "prompt": "Can you optimize the following job id: bqjob_r45471123753c0bea_0000019a5ebf77ad_1",
+       "reference": "The unoptimized query uses a subquery in the `WHERE` clause, causing a double scan of the `transactions` table. The optimized query uses a Common Table Expression (CTE) to find the max date first and then uses an `INNER JOIN`. This allows BigQuery's optimizer to 'push down' the filter, reading only the data for the most recent day, which is much more efficient."
+   },
+   {
+       "prompt": "Can you optimize the following job id: bqjob_r26d6267f686cc7b0_0000019a5ebfbe83_1",
+       "reference": "The original query is inefficient because it repeatedly filters and processes the large `logs` table. A better approach is to use a multi-stage CTE pipeline. First, filter the `contracts` table. Second, perform an initial aggregation on the `logs` table to find high-activity contracts, creating a small intermediate result. Finally, join this small result back to the `logs` table to get the final details. This 'filter early, aggregate early' strategy dramatically reduces the amount of data processed in later stages."
+   },
+   {
+       "prompt": "Can you optimize the following job id: bqjob_r458abb7915cd0a8e_0000019a5ec00f8f_1",
+       "reference": "The query is unoptimized because it performs two full scans on the `blocks` table: one to find the `MAX(total_difficulty)` and another to filter for the block with that difficulty. A much more efficient pattern is to use the `ROW_NUMBER()` window function to rank blocks by difficulty in descending order in a single pass. You can then simply select the row where the rank is 1."
+   },
+   {
+       "prompt": "Can you optimize the following job id: bqjob_r49e8fb47e13aa1f6_0000019a5ec06301_1",
+       "reference": "Using `ORDER BY ... LIMIT` on a large, aggregated dataset forces a global sort, which is very expensive. The optimized approach is to use the `QUALIFY` clause with the `ROW_NUMBER()` window function. This allows the sorting and filtering to be done more efficiently, often in parallel across workers, avoiding the bottleneck of a single, massive sort."
+   },
+   {
+       "prompt": "Can you optimize the following job id: bqjob_r7af22a93cb588faa_0000019a5ec0a0bd_1",
+       "reference": "The query is inefficient because it scans the large `transactions` table multiple times. A more optimized query would perform a single scan, calculating all necessary metrics at once. By using a window function like `ROW_NUMBER()` within a single CTE, you can calculate fees and rank senders simultaneously. This creates a minimal, pre-aggregated summary that can be joined with other summaries, drastically reducing redundant I/O and computation."
+   }
+]
