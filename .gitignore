@@ -1,0 +1,55 @@
+# ----------------------------------------
+# 1. Python Environment Files (The .venv)
+# ----------------------------------------
+
+# The virtual environment folder created by venv
+.venv/
+
+# Lock files and configuration files for common dependency managers
+uv.lock
+# poetry.lock
+# Pip requirements file (if automatically generated)
+# requirements.txt
+# pyproject.toml (sometimes ignored, but usually kept for build configuration)
+
+# ----------------------------------------
+# 2. Files created by build tools
+# ----------------------------------------
+
+# Python compilation/cache files
+__pycache__/
+*.pyc
+*.pyd
+*.so
+
+# Setuptools and wheel files
+dist/
+build/
+*.egg-info/
+src/*.egg-info/
+
+# Ignore the specific egg-info folder you mentioned
+src/bigquery_optimization.egg-info/
+
+# ----------------------------------------
+# 3. Environment/Secrets
+# ----------------------------------------
+
+# Local environment variables file
+.env
+
+# ----------------------------------------
+# 4. Logs and Logs/Output
+# ----------------------------------------
+
+# Pyenv installation logs
+*.log
+
+# out files
+out.txt
+
+#eval results
+eval_results/*
+
+# Example for debugging logs
+# debug.log
